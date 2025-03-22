@@ -21,12 +21,11 @@ export function Sidebar() {
           <NavItem icon={Heart} label="Notifications" badge="1" />
           <NavItem icon={PlusSquare} label="Create" />
           <NavItem
-            icon={() => (
+            icon={
               <Avatar className="w-6 h-6">
                 <AvatarImage src="/placeholder.svg?height=24&width=24" />
                 <AvatarFallback>U</AvatarFallback>
-              </Avatar>
-            )}
+              </Avatar>}
             label="Profile"
           />
         </ul>
@@ -40,7 +39,7 @@ export function Sidebar() {
 }
 
 interface NavItemProps {
-  icon: React.ElementType | (() => React.ReactNode)
+  icon: React.ElementType | React.ReactNode
   label: string
   isActive?: boolean
   badge?: string
@@ -56,7 +55,11 @@ function NavItem({ icon: Icon, label, isActive, badge }: NavItemProps) {
           isActive ? "font-semibold" : "text-gray-300 hover:bg-gray-900",
         )}
       >
-        {typeof Icon === "function" ? Icon() : <Icon className="w-6 h-6" />}
+        {typeof Icon === 'function' ? (
+          <Icon className="w-6 h-6" />
+        ) : (
+          Icon
+        )}
         <span>{label}</span>
         {badge && <Badge className="ml-auto bg-red-500 hover:bg-red-600 text-white">{badge}</Badge>}
       </a>
