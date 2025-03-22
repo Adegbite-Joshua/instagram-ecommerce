@@ -30,7 +30,7 @@ export function Layout({ sidebar, children, childrenTopnav, className }: LayoutP
         const handleClickOutside = (e: MouseEvent) => {
             if (isMobile && sidebarOpen) {
                 const target = e.target as HTMLElement
-                if (!target.closest("[data-sidebar]")) {
+                if (target.id == "overlay") {
                     setSidebarOpen(false)
                 }
             }
@@ -44,13 +44,11 @@ export function Layout({ sidebar, children, childrenTopnav, className }: LayoutP
         <div className={cn("flex min-h-screen w-full", className)}>
             {/* Mobile overlay */}
             {isMobile && sidebarOpen && (
-                <div className="fixed inset-0 bg-red-500/50 z-40" onClick={() => setSidebarOpen(false)} />
+                <div className="fixed inset-0 bg-black/50 z-40" id="overlay" onClick={() => setSidebarOpen(false)} />
             )}
 
             {/* Sidebar */}
             <div
-                id="sidebar"
-                data-sidebar
                 className={cn(
                     "fixed top-0 bottom-0 left-0 z-50 md:w-1/6 bg-background border-r transition-transform duration-300 ease-in-out",
                     isMobile && !sidebarOpen && "-translate-x-full",
