@@ -1,3 +1,6 @@
+"use client"
+
+
 export function Products() {
     const products = [
         {
