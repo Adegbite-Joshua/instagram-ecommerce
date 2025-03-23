@@ -87,7 +87,7 @@ export function Products() {
   function ProductCard({ product }: ProductCardProps) {
     return (
       <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-        <div className="aspect-square overflow-visible">
+        <div className="aspect-square overflow-hidden">
           <img src={product.image || "/placeholder.svg"} alt={product.title} className="w-full transition-transform duration-300 hover:scale-110! h-full object-cover" />
         </div>
   
