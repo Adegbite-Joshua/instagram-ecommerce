@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { Home, Search, Compass, Film, MessageCircle, Heart, PlusSquare, Menu } from "lucide-react";
+import { Home, Search, Compass, Film, Heart, PlusSquare, Menu, Send } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -19,7 +19,7 @@ export function Sidebar() {
           <NavItem icon={Search} label="Search" />
           <NavItem icon={Compass} label="Explore" />
           <NavItem icon={Film} label="Reels" />
-          <NavItem icon={MessageCircle} label="Messages" badge="2" />
+          <NavItem icon={Send} label="Messages" badge="2" />
           <NavItem icon={Heart} label="Notifications" badge="1" />
           <NavItem icon={PlusSquare} label="Create" />
           <li>
@@ -60,9 +60,11 @@ function NavItem({ icon: Icon, label, isActive, badge }: NavItemProps) {
           isActive ? "font-semibold" : "text-gray-300 hover:bg-gray-900"
         )}
       >
-        <Icon className="w-6 h-6" />
+        <div className="relative">
+          <Icon className="w-6 h-6" />
+          {badge && <Badge className="bg-red-500 hover:bg-red-600 text-white absolute -top-1 -right-1 p-0.5"><small>{badge}</small></Badge>}
+        </div>
         <span>{label}</span>
-        {badge && <Badge className="ml-auto bg-red-500 hover:bg-red-600 text-white">{badge}</Badge>}
       </a>
     </li>
   );

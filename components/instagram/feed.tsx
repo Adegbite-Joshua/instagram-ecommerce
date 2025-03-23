@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 export function Feed() {
   const [isLiked, setIsLiked] = useState(false)
   const [showCommentIcons, setShowCommentIcons] = useState(false)
+  const [showSuggestionPost, setShowSuggestionPost] = useState(true)
 
   const toggleLike = () => {
     setIsLiked(!isLiked)
@@ -30,6 +31,12 @@ export function Feed() {
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                 </svg>
               </span>
+              <div className="flex gap-1 items-center justify-center">
+                <span className="">•</span>
+                <span className="">1w</span>
+                <span className="">•</span>
+                <button className="text-blue-600 font-semibold">Follow</button>
+              </div>
             </div>
           </div>
           <button className="text-gray-400">
@@ -39,7 +46,7 @@ export function Feed() {
 
         <div className="aspect-square bg-gray-900">
           <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5_HRrNHI.jpg-JKvUq3TpULWKsmNmV48MnucFtJPX8V.jpeg"
+            src="/instagram.jpeg"
             alt="Post image"
             className="w-full h-full object-cover"
           />
@@ -54,7 +61,7 @@ export function Feed() {
                 />
               </button>
               <button>
-                <MessageCircle className="w-6 h-6" />
+                <MessageCircle className="w-6 h-6 transform -scale-x-100" />
               </button>
               <button>
                 <Send className="w-6 h-6" />
@@ -119,10 +126,10 @@ export function Feed() {
       </div>
 
       {/* Suggested section */}
-      <div className="border border-gray-800 rounded-md overflow-hidden bg-black mb-8">
+      {showSuggestionPost && <div className="border border-gray-800 rounded-md overflow-hidden bg-black mb-8">
         <div className="p-3 flex items-center justify-between">
           <span className="font-medium">Suggested for you</span>
-          <button>
+          <button onClick={()=>setShowSuggestionPost(false)}>
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -141,11 +148,12 @@ export function Feed() {
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                 </svg>
               </span>
-            </div>
-            <div className="text-xs text-gray-400">
-              <span>1w</span>
-              <span className="mx-1">•</span>
-              <span>Follow</span>
+              <div className="flex gap-1 items-center justify-center">
+                <span className="">•</span>
+                <span className="">1w</span>
+                <span className="">•</span>
+                <button className="text-blue-600 font-semibold">Follow</button>
+              </div>
             </div>
             <div className="text-xs text-gray-400 mt-1">Original audio</div>
           </div>
@@ -162,7 +170,7 @@ export function Feed() {
             className="w-full h-full object-cover"
           />
         </div>
-      </div>
+      </div>}
     </div>
   )
 }

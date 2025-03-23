@@ -41,7 +41,7 @@ export function Layout({ sidebar, children, childrenTopnav, className }: LayoutP
     }, [isMobile, sidebarOpen])
 
     return (
-        <div className={cn("flex min-h-screen w-full", className)}>
+        <div className={cn("flex h-screen w-full", className)}>
             {/* Mobile overlay */}
             {isMobile && sidebarOpen && (
                 <div className="fixed inset-0 bg-black/50 z-40" id="overlay" onClick={() => setSidebarOpen(false)} />
@@ -59,7 +59,7 @@ export function Layout({ sidebar, children, childrenTopnav, className }: LayoutP
             </div>
 
             {/* Main content */}
-            <div className={cn("flex-1 w-5/6")}>
+            <div className={cn("flex-1 w-5/6 overflow-auto")}>
                 {/* Mobile header with menu button */}
                 {isMobile && (
                     <div className="sticky bg-green-500 top-0 z-30 flex items-center h-14 px-4 border-b">
